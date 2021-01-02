@@ -4,7 +4,8 @@ import moviesRouter from './api/movies';
 
 import bodyParser from 'body-parser';
 import './db';
-import {loadUsers} from './seedData'
+// import {loadUsers} from './seedData'
+import {loadUsers, loadMovies} from './seedData';
 import usersRouter from './api/users';
 import genresRouter from './api/genres';
 import session from 'express-session';
@@ -24,8 +25,12 @@ const errHandler = (err, req, res, next) => {
 
 const app = express();
 
+// if (process.env.SEED_DB) {
+//   loadUsers();
+// }
 if (process.env.SEED_DB) {
   loadUsers();
+  loadMovies();
 }
 
 const port = process.env.PORT;
