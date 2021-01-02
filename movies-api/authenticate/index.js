@@ -8,7 +8,7 @@ export default async (req, res, next) => {
     next();
   } else {
     return res.status(401).json({status:401,message:"unauthorised"});
-  }
+  } 
 };
 // import User from '../api/users/userModel.js';
 // // Authentication and Authorization Middleware

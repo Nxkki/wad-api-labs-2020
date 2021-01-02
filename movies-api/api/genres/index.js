@@ -1,13 +1,11 @@
 import express from 'express';
-import { getGenres } from '../tmdb-api';
+import Genre from './genresModel';
 
 const router = express.Router(); // eslint-disable-line
 
-// Get all genres
-router.get('/', (req, res, next) => {
-    getGenres().then(genres => res.status(200).send(genres))
-    .catch((error) => next(error));
-  });
+// Get all users
+router.get('/', (req, res,next) => {
+    Genre.find().then(genres =>  res.status(200).json(genres)).catch(next);
+});
 
-  
 export default router;
