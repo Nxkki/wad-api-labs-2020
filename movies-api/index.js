@@ -8,7 +8,8 @@ import {loadUsers} from './seedData'
 import usersRouter from './api/users';
 import genresRouter from './api/genres';
 import session from 'express-session';
-import authenticate from './authenticate/index';
+// import authenticate from './authenticate/index';
+import passport from './authenticate';
 
 dotenv.config();
 
@@ -33,13 +34,16 @@ const port = process.env.PORT;
 //configure body-parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
+app.use(passport.initialize());
 app.use(session({
   secret: 'ilikecake',
   resave: true,
   saveUninitialized: true
 }));
 
-app.use('/api/movies', authenticate, moviesRouter);
+
+// app.use('/api/movies', authenticate, moviesRouter);
+app.use('/api/movies', passport.authenticate('jwt', {session: false}), moviesRouter);
 app.use(express.static('public'));
 // app.use('/api/movies', moviesRouter);
 app.use('/api/users', usersRouter);
