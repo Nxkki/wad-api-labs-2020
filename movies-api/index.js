@@ -1,16 +1,14 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import moviesRouter from './api/movies';
-
 import bodyParser from 'body-parser';
 import './db';
-// import {loadUsers} from './seedData'
-import {loadUsers, loadMovies} from './seedData';
 import usersRouter from './api/users';
 import genresRouter from './api/genres';
-import session from 'express-session';
-// import authenticate from './authenticate/index';
-import passport from './authenticate';
+import upcomingRouter from './api/upcomingMovies';
+import session from "express-session";
+import passport from "./authenticate";
+import { loadUsers, loadMovies } from './seedData';
 
 dotenv.config();
 
@@ -25,35 +23,32 @@ const errHandler = (err, req, res, next) => {
 
 const app = express();
 
-// if (process.env.SEED_DB) {
-//   loadUsers();
-// }
 if (process.env.SEED_DB) {
   loadUsers();
   loadMovies();
 }
 
-const port = process.env.PORT;
-
-
 //configure body-parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(passport.initialize());
+
+const port = process.env.PORT;
+
 app.use(session({
   secret: 'ilikecake',
   resave: true,
   saveUninitialized: true
 }));
 
-
-// app.use('/api/movies', authenticate, moviesRouter);
-app.use('/api/movies', passport.authenticate('jwt', {session: false}), moviesRouter);
 app.use(express.static('public'));
-// app.use('/api/movies', moviesRouter);
+app.use('/api/movies', passport.authenticate('jwt', {session: false}), moviesRouter);
 app.use('/api/users', usersRouter);
-app.use('/api/genres', genresRouter)
+app.use('/api/genres', genresRouter);
+app.use('/api/upcoming', upcomingRouter);
+
 app.use(errHandler);
+
 app.listen(port, () => {
   console.info(`Server running at ${port}`);
 });
