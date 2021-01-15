@@ -27,10 +27,20 @@ export const getMovies = () => {
   };
   export const getUpcomingMovies = () => {
     return fetch(
-       '/api/upcoming',{headers: {
+       '/api/movies/upcoming',{headers: {
          'Authorization': window.localStorage.getItem('token')
       }
     }
     ).then(res => res.json());
   };
+  
+  export const getTopRatedMovies = () => {
+    return fetch(
+       '/api/movies/topRated',{headers: {
+         'Authorization': window.localStorage.getItem('token')
+      }
+    }
+    ).then(res => res.json());
+  };
+
 
