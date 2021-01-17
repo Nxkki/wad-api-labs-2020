@@ -5,6 +5,7 @@ import { PublicPage, Movies, Profile} from "./pages";
 import HomePage from "../sample/pages/homePage";
 import UpcomingMovies from "../sample/pages/upcomingMoviePage";
 import TopRated from "../sample/pages/TopRatedMoviesPage";
+import PopularMovies from "../sample/pages/popularMoviesPage";
 import LoginPage from "./loginPage";
 import SignUpPage from "./signUpPage";
 import PrivateRoute from "./privateRoute";
@@ -37,6 +38,9 @@ const App = () => {
             <Link to="/topRated">Top Rated Movies</Link>
           </li>
           <li>
+            <Link to="/popular">Popular Movies</Link>
+          </li>
+          <li>
             <Link to="/profile">Profile</Link>
           </li>
         </ul>
@@ -51,6 +55,7 @@ const App = () => {
           <PrivateRoute path="/movies/:id" component={MoviePage} />
           <PrivateRoute path="/upcoming" component={UpcomingMovies} />
           <PrivateRoute path="/topRated" component={TopRated} />
+          <PrivateRoute path="/popular"  component={PopularMovies} />
           <PrivateRoute path="/profile" component={Profile} />
           <Redirect from="*" to="/" />
         </Switch>

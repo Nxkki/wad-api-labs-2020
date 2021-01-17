@@ -63,29 +63,29 @@ export const Movies = () => {
             <div>
             <h2>Movies</h2>
             <div className="row movies bg-info">
-                {context.movies.map(r => { return <>
+                {context.movies.map(m => { return <>
                 <div className="col-sm-3">
                     <div className="card  bg-white">
-                        <Link to={`/movies/${r.id}`}>
+                        <Link to={`/movies/${m.id}`}>
                         <img
                         className="card-img-tag center "
-                        alt={r.title}
+                        alt={m.title}
                         src={
-                            r.poster_path
-                            ? `https://image.tmdb.org/t/p/w500/${r.poster_path}`
+                            m.poster_path
+                            ? `https://image.tmdb.org/t/p/w500/${m.poster_path}`
                             : "./film-poster-placeholder.png"
                         }
                         />
                         </Link>
                     <div className="card-body">
-                        <h4 className="card-title ">{r.title}</h4>
+                        <h4 className="card-title ">{m.title}</h4>
                         <p>
                         <FontAwesomeIcon icon={["fas", "calendar"]} />
-                            <span> {r.release_date}</span>
+                            <span> {m.release_date}</span>
                         </p>
                         <p>
                         <FontAwesomeIcon icon={["fas", "star"]} />
-                            <span> {r.vote_average}</span>
+                            <span> {m.vote_average}</span>
                         </p>
                     </div>
 
@@ -94,7 +94,8 @@ export const Movies = () => {
         </div>
         </div>
 
-);    
+)
+    
 }
 export const UpcomingMovies = () => {
     const context = useContext(MoviesContext);
@@ -114,7 +115,15 @@ export const TopRatedMovies = () => {
         </div>
     </>);
 }
-
+export const PopularMovies = () => {
+    const context = useContext(MoviesContext);
+    return ( <>
+        <h2>Popular Movies </h2>
+        <div>
+            {context.popular.map(popular => { return <>{popular.id},{popular.title}<br /></> })}
+        </div>
+    </>);
+}
  export const Profile = () => {
     return <> <h2>My Profile </h2>
     </>

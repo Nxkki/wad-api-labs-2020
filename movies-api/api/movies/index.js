@@ -3,6 +3,7 @@ import movieModel from './movieModel';
 import upcomingMovieModel from './upcomingMovieModel';
 import topRatedModel from './topRatedModel';
 // import upcomingMovies from './upcomingMovieModel';
+import popularMovieModel from './popularMovieModel';
 import {
  getMovieReviews, getGenres
 } from '../tmdb-api';
@@ -25,6 +26,9 @@ router.get('/upcoming', (req, res, next) => {
 router.get('/topRated', (req, res, next) => {
   topRatedModel.find().then(topRatedModel => res.status(200).send(topRatedModel)).catch(next);
 });
+router.get('/popular', (req, res, next) => {
+    popularMovieModel.find().then(popularMovieModel => res.status(200).send(popularMovieModel)).catch(next);
+  });
 
 // router.get('/:id', (req, res, next) => {
 //   const id = parseInt(req.params.id);

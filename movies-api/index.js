@@ -9,7 +9,7 @@ import upcomingRouter from './api/movies/upcomingMovieModel';
 import topRated from './api/movies/topRatedModel';
 import session from "express-session";
 import passport from "./authenticate";
-import { loadUsers, loadMovies, loadUpcoming, loadTopRated} from './seedData';
+import { loadUsers, loadMovies, loadUpcoming, loadTopRated, loadPopular} from './seedData';
 
 dotenv.config();
 
@@ -29,6 +29,7 @@ if (process.env.SEED_DB) {
   loadMovies();
   loadUpcoming();
   loadTopRated();
+  loadPopular();
 }
 
 const app = express();
