@@ -13,7 +13,7 @@ import AuthProvider from "./authContext";
 import MovieProvider from "../sample/contexts/moviesContext";
 import GenresProvider from "../sample/contexts/genresContext";
 import "../../node_modules/bootstrap/dist/css/bootstrap.css"
-
+import MoviePage from "../sample/pages/movieDetailsPage copy";
 
 const App = () => {
   return (
@@ -47,7 +47,8 @@ const App = () => {
           <Route path="/login" component={LoginPage} />
           <Route path="/signup" component={SignUpPage} />,
           <Route exact path="/" component={HomePage} />
-          <PrivateRoute path="/movies" component={Movies} />
+          {/* <PrivateRoute path="/movies" component={Movies} /> */}
+          <PrivateRoute path="/movies/:id" component={MoviePage} />
           <PrivateRoute path="/upcoming" component={UpcomingMovies} />
           <PrivateRoute path="/topRated" component={TopRated} />
           <PrivateRoute path="/profile" component={Profile} />

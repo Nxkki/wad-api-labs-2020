@@ -2,7 +2,7 @@ import userModel from '../api/users/userModel';
 import movieModel from '../api/movies/movieModel';
 import {movies} from './movies.js';
 import {upcoming} from './upcoming.js';
-import {topRated} from './topRated';
+import {topRated} from './topRated.js';
 import upcomingModel from '../api/movies/upcomingMovieModel';
 import topRatedModel from '../api/movies/topRatedModel';
 

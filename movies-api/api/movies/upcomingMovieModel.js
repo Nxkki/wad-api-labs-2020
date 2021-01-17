@@ -36,6 +36,3 @@ UpcomingMovieSchema.statics.findByMovieDBId = function (id) {
 };
 
 export default mongoose.model('Upcoming', UpcomingMovieSchema);
-
-
-

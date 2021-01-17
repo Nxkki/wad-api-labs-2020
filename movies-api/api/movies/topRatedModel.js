@@ -37,5 +37,3 @@ topRatedSchema.statics.findByMovieDBId = function (id) {
 
 export default mongoose.model('topRated', topRatedSchema);
 
-
-
